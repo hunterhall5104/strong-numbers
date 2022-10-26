@@ -1,0 +1,55 @@
+##
+# Summary - Strong numbers
+# Architects - Hunter Hall
+# Developed by - Hunter Hall
+# Date - 10/21/2022
+# Initial Version - 0.1
+# Description - This program gives all strong numbers up to input
+#
+# Modified by:
+# Modified date:
+# Version -
+# Description:
+#
+##
+
+def is_strong(N):
+    """Function takes number and tells if stong or not"""
+    try:
+        factorial = {0: 1, 1: 1, 2: 2, 3: 6, 4: 24, 5: 120,
+                     6: 720, 7: 5040, 8: 40320, 9: 362880}
+        fac_lst = []
+        split = [int(x) for x in str(N)]
+
+        for k, v in factorial.items():
+            for i in split:
+                if k == i:
+                    fac_lst.append(v)
+
+        total = sum(fac_lst)
+        if total == N:
+            return True
+        else:
+            return False
+    except Exception as exc:
+        print("is_strong function - Error Occured " + str(exc))
+
+
+def print_strong(N):
+    """examine each number in range and print strong number"""
+    try:
+        strong_numbers = []
+        for i in range(1, N + 1):
+            if (is_strong(i)):
+                strong_numbers.append(i)
+        print(strong_numbers)
+    except Exception as e:
+        print("print_strong function - Error Occured " + str(e))
+
+
+if __name__ == "__main__":
+    try:
+        N = int(input("Enter a number: "))
+        print_strong(N)
+    except Exception as e:
+        print("Input - Error Occured " + str(e))
