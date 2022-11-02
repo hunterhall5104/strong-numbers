@@ -6,12 +6,16 @@
 # Initial Version - 0.1
 # Description - This program gives all strong numbers up to input
 #
-# Modified by:
-# Modified date:
-# Version -
-# Description:
+# Modified by: Hunter Hall
+# Modified date: 11/02/2022
+# Version - 0.2
+# Description: Added logging to program/ edited conditional statement in "is_strong function"
 #
 ##
+import logging
+logging.basicConfig(filename="stongnumbers.log", level=logging.INFO,
+                    format="%(asctime)s | %(name)s | %(levelname)s | %(message)s")
+
 
 def is_strong(N):
     """Function takes number and tells if stong or not"""
@@ -29,10 +33,8 @@ def is_strong(N):
         total = sum(fac_lst)
         if total == N:
             return True
-        else:
-            return False
     except Exception as exc:
-        print("is_strong function - Error Occured " + str(exc))
+        logging.error("is_strong function - Error Occured %s", exc)
 
 
 def print_strong(N):
@@ -42,14 +44,14 @@ def print_strong(N):
         for i in range(1, N + 1):
             if (is_strong(i)):
                 strong_numbers.append(i)
-        print(strong_numbers)
-    except Exception as e:
-        print("print_strong function - Error Occured " + str(e))
+        logging.info(strong_numbers)
+    except Exception as ex:
+        logging.error("print_strong function - Error Occured %s", ex)
 
 
 if __name__ == "__main__":
     try:
         N = int(input("Enter a number: "))
         print_strong(N)
-    except Exception as e:
-        print("Input - Error Occured " + str(e))
+    except Exception as exx:
+        logging.error("Input - Error Occured %s", exx)
